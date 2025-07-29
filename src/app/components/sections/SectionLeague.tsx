@@ -22,7 +22,7 @@ export default function SectionLeague({
           </p>
           <div className="mt-8">
             <Image
-              src="/deniz-soldat.jpeg"
+              src="/chess-board.jpg"
               alt="Deniz Soldat"
               width={1000}
               height={1000}
