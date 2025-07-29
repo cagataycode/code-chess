@@ -8,7 +8,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased h-screen flex flex-col items-center justify-between relative overflow-hidden text-gray-900">
+        {children}
+      </body>
     </html>
   );
 }
