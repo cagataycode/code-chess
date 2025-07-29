@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
-import { Header, NavBar, Footer } from "../layout";
+import { Header, NavBar } from "../layout";
 import { MainContent } from "./";
 import { NAV_ITEMS } from "../../data";
 

@@ -1,5 +1,3 @@
-import Card from "../ui/Card";
-
 interface LeaderboardEntry {
   name: string;
   wins: number;
