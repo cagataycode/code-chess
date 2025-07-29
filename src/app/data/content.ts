@@ -1,10 +1,10 @@
 export const NAV_ITEMS = [
   { key: "home", label: "Home" },
-  { key: "contact", label: "Contact" },
   { key: "rules", label: "Rules" },
   { key: "league", label: "League Info" },
   { key: "fixtures", label: "Fixtures" },
   { key: "leaderboard", label: "Leaderboard" },
+  { key: "contact", label: "Contact" },
 ];
 
 export const INTRO = `
@@ -28,15 +28,16 @@ their matches during the week to keep the league moving smoothly.
 `.trim();
 
 export const FIXTURES = [
-  { round: 1, player1: "Alice", player2: "Bob" },
-  { round: 1, player1: "Charlie", player2: "Diana" },
-  { round: 2, player1: "Alice", player2: "Charlie" },
-  { round: 2, player1: "Bob", player2: "Diana" },
+  { week: 1, player1: "TBD", player2: "TBD" },
+  { week: 1, player1: "TBD", player2: "TBD" },
+  { week: 1, player1: "TBD", player2: "TBD" },
+  { week: 1, player1: "TBD", player2: "TBD" },
 ];
 
 export const LEADERBOARD = [
-  { name: "Alice", points: 2 },
-  { name: "Bob", points: 1.5 },
-  { name: "Charlie", points: 1 },
-  { name: "Diana", points: 0.5 },
+  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
+  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
+  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
+  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
+  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
 ];
