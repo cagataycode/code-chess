@@ -71,21 +71,13 @@ export default function MainContent({
           ref={(el) => {
             sectionRefs.current[1] = el;
           }}
-          className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
-        >
-          <SectionContact className="mt-2" />
-        </div>
-        <div
-          ref={(el) => {
-            sectionRefs.current[2] = el;
-          }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto pb-8"
         >
           <SectionRules className="mt-2" />
         </div>
         <div
           ref={(el) => {
-            sectionRefs.current[3] = el;
+            sectionRefs.current[2] = el;
           }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
         >
@@ -93,7 +85,7 @@ export default function MainContent({
         </div>
         <div
           ref={(el) => {
-            sectionRefs.current[4] = el;
+            sectionRefs.current[3] = el;
           }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
         >
@@ -101,11 +93,19 @@ export default function MainContent({
         </div>
         <div
           ref={(el) => {
-            sectionRefs.current[5] = el;
+            sectionRefs.current[4] = el;
           }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
         >
           <SectionLeaderboard leaderboard={LEADERBOARD} className="mt-2" />
+        </div>
+        <div
+          ref={(el) => {
+            sectionRefs.current[5] = el;
+          }}
+          className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
+        >
+          <SectionContact className="mt-2" />
         </div>
       </div>
     </main>

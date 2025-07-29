@@ -6,7 +6,7 @@ export default function ParallaxBackground({
   scrollX,
 }: ParallaxBackgroundProps) {
   const secondaryTilesX = Math.round(-scrollX * 0.1);
-  const whiteTilesX = Math.round(-scrollX * 0.11333333333);
+  const whiteTilesX = Math.round(-scrollX * 0.1135);
   return (
     <>
       <div
