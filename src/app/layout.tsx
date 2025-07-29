@@ -1,18 +1,14 @@
 "use client";
 import "./globals.css";
-import { ChessClubPage } from "./components/pages";
-import { ParallaxBackground } from "./components/ui";
-import { useState } from "react";
 
-export default function RootLayout() {
-  const [scrollX, setScrollX] = useState(0);
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="antialiased h-screen flex flex-col items-center justify-between relative overflow-hidden text-gray-900">
-        <ParallaxBackground scrollX={scrollX} />
-        <ChessClubPage onScrollChange={setScrollX} />
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

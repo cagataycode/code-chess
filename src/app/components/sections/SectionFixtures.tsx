@@ -1,5 +1,3 @@
-import { Card } from "../ui";
-
 interface Fixture {
   week: number;
   player1: string;
