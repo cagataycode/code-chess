@@ -6,7 +6,6 @@ Website for CODE Chess Club.
 
 - **6 sections**: Home, Contact, Rules, League Info, Fixtures, Leaderboard
 - **Horizontal scrolling** between sections
-- **Parallax background** with moving tiles
 - **Mobile responsive** - works on phones too
 - **Chess themed** design throughout
 
@@ -34,7 +33,7 @@ src/app/
 │   ├── layout/     # Header, NavBar
 │   ├── pages/      # Main page stuff
 │   ├── sections/   # Content sections
-│   └── ui/         # Card, ParallaxBackground
+│   └── ui/         # Card
 ├── data/           # Content data
 ├── globals.css     # Styles
 ├── layout.tsx      # Root layout
