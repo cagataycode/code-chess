@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header
-      className="sticky top-0 z-20 w-full py-8 flex flex-col items-center shadow-sm relative overflow-hidden"
+      className="w-full py-8 flex flex-col items-center shadow-sm relative overflow-hidden"
       style={{
         backgroundImage: 'url("/chess-tiles.svg")',
         backgroundSize: "480px 480px",
@@ -11,8 +11,7 @@ export default function Header() {
         backgroundRepeat: "repeat",
       }}
     >
-      {/* Semi-transparent overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-white/90"></div>
+      <div className="absolute inset-0 bg-white"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center">
