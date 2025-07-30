@@ -1,0 +1,41 @@
+<svg width="1440" height="1440" viewBox="0 0 1440 1440" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_3)">
+<rect width="180" height="180" fill="#EEEEEE"/>
+<rect y="360" width="180" height="180" fill="#EEEEEE"/>
+<rect y="720" width="180" height="180" fill="#EEEEEE"/>
+<rect y="1080" width="180" height="180" fill="#EEEEEE"/>
+<rect x="180" y="180" width="180" height="180" fill="#EEEEEE"/>
+<rect x="180" y="540" width="180" height="180" fill="#EEEEEE"/>
+<rect x="180" y="900" width="180" height="180" fill="#EEEEEE"/>
+<rect x="180" y="1260" width="180" height="180" fill="#EEEEEE"/>
+<rect x="360" width="180" height="180" fill="#EEEEEE"/>
+<rect x="360" y="360" width="180" height="180" fill="#EEEEEE"/>
+<rect x="360" y="720" width="180" height="180" fill="#EEEEEE"/>
+<rect x="360" y="1080" width="180" height="180" fill="#EEEEEE"/>
+<rect x="540" y="180" width="180" height="180" fill="#EEEEEE"/>
+<rect x="540" y="540" width="180" height="180" fill="#EEEEEE"/>
+<rect x="540" y="900" width="180" height="180" fill="#EEEEEE"/>
+<rect x="540" y="1260" width="180" height="180" fill="#EEEEEE"/>
+<rect x="720" width="180" height="180" fill="#EEEEEE"/>
+<rect x="720" y="360" width="180" height="180" fill="#EEEEEE"/>
+<rect x="720" y="720" width="180" height="180" fill="#EEEEEE"/>
+<rect x="720" y="1080" width="180" height="180" fill="#EEEEEE"/>
+<rect x="900" y="180" width="180" height="180" fill="#EEEEEE"/>
+<rect x="900" y="540" width="180" height="180" fill="#EEEEEE"/>
+<rect x="900" y="900" width="180" height="180" fill="#EEEEEE"/>
+<rect x="900" y="1260" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1080" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1080" y="360" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1080" y="720" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1080" y="1080" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1260" y="180" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1260" y="540" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1260" y="900" width="180" height="180" fill="#EEEEEE"/>
+<rect x="1260" y="1260" width="180" height="180" fill="#EEEEEE"/>
+</g>
+<defs>
+<clipPath id="clip0_1_3">
+<rect width="1440" height="1440" fill="white"/>
+</clipPath>
+</defs>
+</svg>
