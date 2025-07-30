@@ -52,7 +52,7 @@ export default function MainContent({
   return (
     <main
       ref={mainRef}
-      className="w-full h-full overflow-x-auto scroll-smooth snap-x snap-mandatory"
+      className="w-full flex-1 overflow-x-auto scroll-smooth snap-x snap-mandatory"
       onScroll={handleScroll}
     >
       <div className="flex flex-nowrap w-full h-full items-start">

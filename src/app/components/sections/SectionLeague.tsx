@@ -23,10 +23,10 @@ export default function SectionLeague({
           <div className="mt-8">
             <Image
               src="/chess-board.jpg"
-              alt="Deniz Soldat"
+              alt="Chess Board"
               width={1000}
               height={1000}
-              className="rounded-lg mx-auto"
+              className="rounded-lg mx-auto w-full max-w-md"
               priority
             />
           </div>

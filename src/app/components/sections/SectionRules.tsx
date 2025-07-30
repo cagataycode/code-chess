@@ -9,17 +9,17 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
     <section className={`w-full flex justify-center ${className}`}>
       <div className="max-w-4xl w-full flex flex-col gap-6">
         <Card>
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800">
             General Club Rules
           </h2>
         </Card>
 
         {/* Meeting Times and Locations */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Meeting Times & Locations
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               We gather weekly on campus in designated common areas to play,
               chat and challenge each other.
@@ -38,10 +38,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* Communication Channels */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Communication Channels
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>Slack is our main communication channel.</li>
             <li>
               Join the{" "}
@@ -56,10 +56,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* League Format */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             League Format
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               All players participate in a single, open league to ensure
               inclusivity and simplicity.
@@ -78,10 +78,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* Match Format */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Match Format
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               Matches are played using the standard time controls (see Time
               Controls).
@@ -95,10 +95,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* Scoring System */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Scoring System
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               Win: <span className="font-semibold">1 point</span>
             </li>
@@ -113,10 +113,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* Time Controls */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Time Controls
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               Matches use a{" "}
               <span className="font-semibold">10-minute per player</span> time
@@ -131,10 +131,10 @@ export default function SectionRules({ className = "" }: SectionRulesProps) {
 
         {/* Conduct During Matches */}
         <Card>
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-800">
             Conduct During Matches
           </h3>
-          <ul className="list-disc list-inside text-gray-700 space-y-2 text-lg">
+          <ul className="list-disc list-inside text-gray-700 space-y-2 text-base md:text-lg">
             <li>
               Any disputes during a match should first be discussed calmly
               between the players.

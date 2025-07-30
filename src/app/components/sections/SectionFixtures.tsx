@@ -11,7 +11,25 @@ interface FixtureRowProps {
 function FixtureRow({ fixture }: FixtureRowProps) {
   return (
     <div className="px-6 py-4 hover:bg-gray-50 transition-colors duration-150">
-      <div className="flex items-center justify-center">
+      {/* Mobile view */}
+      <div className="md:hidden">
+        <div className="text-center space-y-2">
+          <div className="font-semibold text-gray-900 text-sm">
+            {fixture.player1}
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center border border-gray-300">
+              <span className="text-xs font-bold text-gray-600">VS</span>
+            </div>
+          </div>
+          <div className="font-semibold text-gray-900 text-sm">
+            {fixture.player2}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop view */}
+      <div className="hidden md:flex items-center justify-center">
         <div className="flex items-center space-x-4">
           <div className="text-right">
             <div className="font-semibold text-gray-900">{fixture.player1}</div>

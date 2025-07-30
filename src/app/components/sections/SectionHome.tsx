@@ -26,7 +26,7 @@ export default function SectionHome({
               alt="chess"
               width={1000}
               height={1000}
-              className="rounded-lg mx-auto w-full"
+              className="rounded-lg mx-auto w-full max-w-md"
               priority
             />
           </div>

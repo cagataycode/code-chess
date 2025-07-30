@@ -28,7 +28,7 @@ export default function SectionContact({
               alt="Deniz Soldat"
               width={1000}
               height={1000}
-              className="rounded-lg mx-auto"
+              className="rounded-lg mx-auto w-full max-w-md"
               priority
             />
           </div>

@@ -27,7 +27,7 @@ export default function ChessClubPage() {
   };
 
   return (
-    <div className="relative z-10 w-full flex flex-col items-center h-full">
+    <div className="relative z-10 w-full flex flex-col items-center min-h-screen">
       <Header />
       <NavBar
         navItems={NAV_ITEMS}
