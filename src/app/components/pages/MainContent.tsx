@@ -17,7 +17,6 @@ import {
 } from "../../data";
 
 interface MainContentProps {
-  onScroll: (scrollLeft: number) => void;
   activeSection: string;
   setActiveSection: (section: string) => void;
   onRefsReady: (refs: {
@@ -27,7 +26,6 @@ interface MainContentProps {
 }
 
 export default function MainContent({
-  onScroll,
   activeSection,
   setActiveSection,
   onRefsReady,
@@ -43,7 +41,6 @@ export default function MainContent({
   const handleScroll = () => {
     if (!mainRef.current) return;
     const scrollLeft = mainRef.current.scrollLeft;
-    onScroll(scrollLeft);
     const width = mainRef.current.offsetWidth;
     const idx = Math.round(scrollLeft / width);
     const navKey = NAV_ITEMS[idx]?.key;

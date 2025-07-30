@@ -4,11 +4,7 @@ import { Header, NavBar } from "../layout";
 import { MainContent } from "./";
 import { NAV_ITEMS } from "../../data";
 
-interface ChessClubPageProps {
-  onScrollChange: (scrollX: number) => void;
-}
-
-export default function ChessClubPage({ onScrollChange }: ChessClubPageProps) {
+export default function ChessClubPage() {
   const [activeSection, setActiveSection] = useState<string>("home");
   const mainRef = useRef<HTMLDivElement | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -20,10 +16,6 @@ export default function ChessClubPage({ onScrollChange }: ChessClubPageProps) {
       behavior: "smooth",
       inline: "start",
     });
-  };
-
-  const handleScroll = (scrollLeft: number) => {
-    onScrollChange(scrollLeft);
   };
 
   const handleRefsReady = (refs: {
@@ -43,7 +35,6 @@ export default function ChessClubPage({ onScrollChange }: ChessClubPageProps) {
         onNavClick={handleNavClick}
       />
       <MainContent
-        onScroll={handleScroll}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
         onRefsReady={handleRefsReady}
