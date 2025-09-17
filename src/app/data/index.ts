@@ -2,6 +2,9 @@ export {
   NAV_ITEMS,
   INTRO,
   LEAGUE_INFO,
-  FIXTURES,
-  LEADERBOARD,
+  getFixtures,
+  getLeaderboard,
+  getPlayers,
+  getMatches,
+  chessDataManager,
 } from "./content";

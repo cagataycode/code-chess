@@ -1,7 +1,21 @@
 interface Fixture {
-  week: number;
   player1: string;
   player2: string;
+}
+
+interface FixturesData {
+  week1: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
+  week2: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
 }
 
 interface FixtureRowProps {
@@ -49,15 +63,15 @@ function FixtureRow({ fixture }: FixtureRowProps) {
 }
 
 interface FixtureGroupProps {
-  week: number;
+  groupName: string;
   fixtures: Fixture[];
 }
 
-function FixtureGroup({ week, fixtures }: FixtureGroupProps) {
+function FixtureGroup({ groupName, fixtures }: FixtureGroupProps) {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-300">
       <div className="bg-gray-900 text-white px-6 py-4">
-        <h3 className="text-lg font-semibold">Week {week}</h3>
+        <h3 className="text-lg font-semibold">{groupName}</h3>
       </div>
 
       <div className="divide-y divide-gray-200">
@@ -70,7 +84,7 @@ function FixtureGroup({ week, fixtures }: FixtureGroupProps) {
 }
 
 interface SectionFixturesProps {
-  fixtures: Fixture[];
+  fixtures: FixturesData;
   className?: string;
 }
 
@@ -78,25 +92,53 @@ export default function SectionFixtures({
   fixtures,
   className = "",
 }: SectionFixturesProps) {
-  // Group fixtures by week
-  const groupedFixtures = fixtures.reduce((groups, fixture) => {
-    const week = fixture.week;
-    if (!groups[week]) {
-      groups[week] = [];
-    }
-    groups[week].push(fixture);
-    return groups;
-  }, {} as Record<number, Fixture[]>);
+  const weeks = [
+    {
+      week: 2,
+      title: "Week 2 Fixtures",
+      description: "All matches for the second week of the tournament",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week2.groupA },
+        { name: "Group B", fixtures: fixtures.week2.groupB },
+        { name: "Group C", fixtures: fixtures.week2.groupC },
+        { name: "Group D", fixtures: fixtures.week2.groupD },
+      ],
+    },
+    {
+      week: 1,
+      title: "Week 1 Fixtures",
+      description: "All matches for the first week of the tournament",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week1.groupA },
+        { name: "Group B", fixtures: fixtures.week1.groupB },
+        { name: "Group C", fixtures: fixtures.week1.groupC },
+        { name: "Group D", fixtures: fixtures.week1.groupD },
+      ],
+    },
+  ];
 
   return (
-    <section className={`max-w-4xl w-full text-center ${className}`}>
-      <div className="space-y-6">
-        {Object.entries(groupedFixtures).map(([week, weekFixtures]) => (
-          <FixtureGroup
-            key={week}
-            week={parseInt(week)}
-            fixtures={weekFixtures}
-          />
+    <section className={`max-w-6xl w-full text-center ${className}`}>
+      <div className="space-y-12">
+        {weeks.map((week) => (
+          <div key={week.week} className="space-y-6">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {week.title}
+              </h2>
+              <p className="text-white">{week.description}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {week.groups.map((group) => (
+                <FixtureGroup
+                  key={`${week.week}-${group.name}`}
+                  groupName={group.name}
+                  fixtures={group.fixtures}
+                />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
