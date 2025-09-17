@@ -12,8 +12,8 @@ import {
   NAV_ITEMS,
   INTRO,
   LEAGUE_INFO,
-  FIXTURES,
-  LEADERBOARD,
+  getFixtures,
+  getLeaderboard,
 } from "../../data";
 
 interface MainContentProps {
@@ -86,7 +86,7 @@ export default function MainContent({
           }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
         >
-          <SectionFixtures fixtures={FIXTURES} className="mt-2" />
+          <SectionFixtures fixtures={getFixtures()} className="mt-2" />
         </div>
         <div
           ref={(el) => {
@@ -94,7 +94,7 @@ export default function MainContent({
           }}
           className="min-w-full max-w-full h-full px-4 flex flex-col items-center snap-start overflow-y-auto"
         >
-          <SectionLeaderboard leaderboard={LEADERBOARD} className="mt-2" />
+          <SectionLeaderboard leaderboard={getLeaderboard()} className="mt-2" />
         </div>
         <div
           ref={(el) => {

@@ -1,3 +1,6 @@
+import { chessDataManager } from "./chessManager";
+import { Match } from "./types";
+
 export const NAV_ITEMS = [
   { key: "home", label: "Home" },
   { key: "rules", label: "Rules" },
@@ -27,17 +30,44 @@ Matches are scheduled weekly, with fixture lists posted in advance. Players arra
 their matches during the week to keep the league moving smoothly.
 `.trim();
 
-export const FIXTURES = [
-  { week: 1, player1: "TBD", player2: "TBD" },
-  { week: 1, player1: "TBD", player2: "TBD" },
-  { week: 1, player1: "TBD", player2: "TBD" },
-  { week: 1, player1: "TBD", player2: "TBD" },
-];
+// Dynamic data functions using the chess data manager
+export const getFixtures = () => {
+  const matches = chessDataManager.getMatches();
+  const week1Matches = matches.filter((m) => m.week === 1);
+  const week2Matches = matches.filter((m) => m.week === 2);
 
-export const LEADERBOARD = [
-  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
-  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
-  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
-  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
-  { name: "TBD", wins: 0, draws: 0, losses: 0, score: 0.0 },
-];
+  const groupMatches = (matches: Match[]) => ({
+    groupA: matches
+      .filter((m) => m.group === "A")
+      .map((m) => ({ player1: m.player1, player2: m.player2 })),
+    groupB: matches
+      .filter((m) => m.group === "B")
+      .map((m) => ({ player1: m.player1, player2: m.player2 })),
+    groupC: matches
+      .filter((m) => m.group === "C")
+      .map((m) => ({ player1: m.player1, player2: m.player2 })),
+    groupD: matches
+      .filter((m) => m.group === "D")
+      .map((m) => ({ player1: m.player1, player2: m.player2 })),
+  });
+
+  return {
+    week1: groupMatches(week1Matches),
+    week2: groupMatches(week2Matches),
+  };
+};
+
+export const getLeaderboard = () => {
+  return chessDataManager.getLeaderboard();
+};
+
+export const getPlayers = () => {
+  return chessDataManager.getPlayers();
+};
+
+export const getMatches = () => {
+  return chessDataManager.getMatches();
+};
+
+// Export the data manager for components that need more functionality
+export { chessDataManager };
