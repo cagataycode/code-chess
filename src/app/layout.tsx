@@ -1,5 +1,6 @@
 "use client";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
   children,
@@ -10,6 +11,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased min-h-screen flex flex-col items-center justify-between relative text-gray-900">
         {children}
+        <Analytics />
       </body>
     </html>
   );
