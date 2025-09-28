@@ -35,6 +35,7 @@ export const getFixtures = () => {
   const matches = chessDataManager.getMatches();
   const week1Matches = matches.filter((m) => m.week === 1);
   const week2Matches = matches.filter((m) => m.week === 2);
+  const week3Matches = matches.filter((m) => m.week === 3);
 
   const groupMatches = (matches: Match[]) => ({
     groupA: matches
@@ -54,6 +55,7 @@ export const getFixtures = () => {
   return {
     week1: groupMatches(week1Matches),
     week2: groupMatches(week2Matches),
+    week3: groupMatches(week3Matches),
   };
 };
 

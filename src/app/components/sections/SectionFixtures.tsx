@@ -16,6 +16,12 @@ interface FixturesData {
     groupC: Fixture[];
     groupD: Fixture[];
   };
+  week3: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
 }
 
 interface FixtureRowProps {
@@ -93,6 +99,17 @@ export default function SectionFixtures({
   className = "",
 }: SectionFixturesProps) {
   const weeks = [
+    {
+      week: 3,
+      title: "Week 3 Fixtures",
+      description: "All matches for the third week of the tournament",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week3.groupA },
+        { name: "Group B", fixtures: fixtures.week3.groupB },
+        { name: "Group C", fixtures: fixtures.week3.groupC },
+        { name: "Group D", fixtures: fixtures.week3.groupD },
+      ],
+    },
     {
       week: 2,
       title: "Week 2 Fixtures",
