@@ -11,10 +11,11 @@ export default function ChessClubPage() {
 
   const handleNavClick = (idx: number, key: string) => {
     setActiveSection(key);
-    // Scroll to the selected section
+    // Scroll to the selected section horizontally
     sectionRefs.current[idx]?.scrollIntoView({
       behavior: "smooth",
       inline: "start",
+      block: "nearest", // Prevents vertical scrolling
     });
   };
 
