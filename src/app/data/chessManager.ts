@@ -28,6 +28,13 @@ export class ChessDataManager {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+
+        // Check if we need to sync from source (if initial data has more matches)
+        if (initialChessData.matches.length > (parsed.matches?.length || 0)) {
+          console.log("New data available, syncing from source...");
+          return initialChessData;
+        }
+
         // Merge with initial data to handle new fields
         return {
           ...initialChessData,

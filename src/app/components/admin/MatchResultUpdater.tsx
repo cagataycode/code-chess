@@ -12,38 +12,49 @@ export default function MatchResultUpdater({
   className = "",
 }: MatchResultUpdaterProps) {
   const [matches, setMatches] = useState<Match[]>([]);
-  const [selectedMatch, setSelectedMatch] = useState<string>("");
-  const [result, setResult] = useState<"player1" | "player2" | "draw">(
-    "player1"
-  );
+  const [selectedWeek, setSelectedWeek] = useState<number>(1);
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     setMatches(chessDataManager.getMatches());
   }, []);
 
-  const handleUpdateResult = () => {
-    if (!selectedMatch) {
-      setMessage("Please select a match");
-      return;
-    }
-
-    const success = chessDataManager.updateMatchResult(selectedMatch, result);
+  const handleUpdateMatch = (matchId: string, result: "player1" | "player2" | "draw") => {
+    const success = chessDataManager.updateMatchResult(matchId, result);
     if (success) {
-      setMessage("Match result updated successfully!");
+      setMessage(`Match updated successfully!`);
       setMatches(chessDataManager.getMatches());
-      setSelectedMatch("");
-      setTimeout(() => setMessage(""), 3000);
+      setTimeout(() => setMessage(""), 2000);
     } else {
       setMessage("Failed to update match result");
     }
   };
 
-  const incompleteMatches = matches.filter((match) => !match.completed);
+  const handleSyncWeek = () => {
+    // Reset and reload data from the source
+    chessDataManager.resetData();
+    setMatches(chessDataManager.getMatches());
+    setMessage(`Week ${selectedWeek} data synced from source!`);
+    setTimeout(() => setMessage(""), 3000);
+  };
+
+  // Group matches by week
+  const weeks = Array.from(new Set(matches.map((m) => m.week))).sort((a, b) => b - a);
+  const weekMatches = matches.filter((m) => m.week === selectedWeek);
+  const groupedMatches: Record<string, Match[]> = {
+    A: [],
+    B: [],
+    C: [],
+    D: [],
+  };
+
+  weekMatches.forEach((match) => {
+    groupedMatches[match.group].push(match);
+  });
 
   return (
     <div className={`bg-white p-6 rounded-lg shadow-lg ${className}`}>
-      <h3 className="text-xl font-bold mb-4">Update Match Results</h3>
+      <h3 className="text-2xl font-bold mb-6">Update Match Results by Week</h3>
 
       {message && (
         <div
@@ -57,93 +68,111 @@ export default function MatchResultUpdater({
         </div>
       )}
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Select Match
+      {/* Week Selector */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Select Week
           </label>
-          <select
-            value={selectedMatch}
-            onChange={(e) => setSelectedMatch(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          <button
+            onClick={handleSyncWeek}
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm font-medium"
           >
-            <option value="">Choose a match...</option>
-            {incompleteMatches.map((match) => (
-              <option key={match.id} value={match.id}>
-                Week {match.week} - Group {match.group}: {match.player1} vs{" "}
-                {match.player2}
-              </option>
-            ))}
-          </select>
+            Sync All Data from Source
+          </button>
         </div>
+        <div className="flex gap-2">
+          {weeks.map((week) => (
+            <button
+              key={week}
+              onClick={() => setSelectedWeek(week)}
+              className={`px-4 py-2 rounded-md font-medium ${
+                selectedWeek === week
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Week {week}
+            </button>
+          ))}
+        </div>
+      </div>
 
-        {selectedMatch && (
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Result
-            </label>
-            <div className="space-y-2">
-              {(() => {
-                const match = matches.find((m) => m.id === selectedMatch);
-                if (!match) return null;
+      {/* Matches by Group */}
+      <div className="space-y-6">
+        {(["A", "B", "C", "D"] as const).map((group) => (
+          <div key={group} className="border rounded-lg p-4">
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">Group {group}</h4>
+            <div className="space-y-4">
+              {groupedMatches[group].length > 0 ? (
+                groupedMatches[group].map((match) => (
+                  <div
+                    key={match.id}
+                    className={`p-4 rounded-lg border ${
+                      match.player2 === "BYE" || match.player1 === "BYE"
+                        ? "bg-yellow-50 border-yellow-300"
+                        : match.completed
+                        ? "bg-green-50 border-green-200"
+                        : "bg-gray-50 border-gray-200"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-4 flex-1">
+                        <span className="font-medium text-gray-900 min-w-[200px]">{match.player1}</span>
+                        <span className="text-gray-500">vs</span>
+                        <span className="font-medium text-gray-900 min-w-[200px]">{match.player2}</span>
+                      </div>
+                      {match.player2 === "BYE" || match.player1 === "BYE" ? (
+                        <span className="text-sm text-yellow-600 font-medium">⚠ BYE</span>
+                      ) : match.completed ? (
+                        <span className="text-sm text-green-600 font-medium">✓ Completed</span>
+                      ) : null}
+                    </div>
 
-                return (
-                  <>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="result"
-                        value="player1"
-                        checked={result === "player1"}
-                        onChange={(e) => setResult(e.target.value as "player1")}
-                        className="mr-2"
-                      />
-                      {match.player1} wins
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="result"
-                        value="player2"
-                        checked={result === "player2"}
-                        onChange={(e) => setResult(e.target.value as "player2")}
-                        className="mr-2"
-                      />
-                      {match.player2} wins
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="result"
-                        value="draw"
-                        checked={result === "draw"}
-                        onChange={(e) => setResult(e.target.value as "draw")}
-                        className="mr-2"
-                      />
-                      Draw
-                    </label>
-                  </>
-                );
-              })()}
+                    {!match.completed && match.player2 !== "BYE" && (
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleUpdateMatch(match.id, "player1")}
+                          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 text-sm"
+                        >
+                          {match.player1} wins
+                        </button>
+                        <button
+                          onClick={() => handleUpdateMatch(match.id, "draw")}
+                          className="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 text-sm"
+                        >
+                          Draw
+                        </button>
+                        <button
+                          onClick={() => handleUpdateMatch(match.id, "player2")}
+                          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 text-sm"
+                        >
+                          {match.player2} wins
+                        </button>
+                      </div>
+                    )}
+
+                    {match.completed && (
+                      <div className="text-sm text-gray-600">
+                        Result: {match.result === "draw" ? "Draw" : match.result === "player1" ? `${match.player1} won` : `${match.player2} won`}
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500 text-sm">No matches in this group for Week {selectedWeek}</p>
+              )}
             </div>
           </div>
-        )}
-
-        <button
-          onClick={handleUpdateResult}
-          disabled={!selectedMatch}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-        >
-          Update Result
-        </button>
+        ))}
       </div>
 
       <div className="mt-6 pt-4 border-t">
-        <h4 className="font-medium mb-2">Quick Stats</h4>
+        <h4 className="font-medium mb-2">Week {selectedWeek} Stats</h4>
         <div className="text-sm text-gray-600">
-          <p>Total matches: {matches.length}</p>
-          <p>Completed: {matches.filter((m) => m.completed).length}</p>
-          <p>Pending: {incompleteMatches.length}</p>
+          <p>Total matches: {weekMatches.length}</p>
+          <p>Completed: {weekMatches.filter((m) => m.completed).length}</p>
+          <p>Pending: {weekMatches.filter((m) => !m.completed && m.player2 !== "BYE").length}</p>
         </div>
       </div>
     </div>

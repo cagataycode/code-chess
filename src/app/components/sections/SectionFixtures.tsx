@@ -1,6 +1,8 @@
 interface Fixture {
   player1: string;
   player2: string;
+  result?: "player1" | "player2" | "draw" | null;
+  completed?: boolean;
 }
 
 interface FixturesData {
@@ -22,6 +24,18 @@ interface FixturesData {
     groupC: Fixture[];
     groupD: Fixture[];
   };
+  week4: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
+  week5: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
 }
 
 interface FixtureRowProps {
@@ -29,20 +43,50 @@ interface FixtureRowProps {
 }
 
 function FixtureRow({ fixture }: FixtureRowProps) {
+  const getResultDisplay = () => {
+    if (fixture.player1 === "BYE" || fixture.player2 === "BYE") return "BYE";
+    if (!fixture.completed || !fixture.result) return "VS";
+    if (fixture.result === "draw") return "DRAW";
+    return fixture.result === "player1" ? "W-L" : "L-W";
+  };
+
+  const getPlayer1Style = () => {
+    if (!fixture.completed || !fixture.result) return "text-gray-900";
+    if (fixture.result === "player1") return "text-green-600 font-bold";
+    if (fixture.result === "draw") return "text-blue-600";
+    return "text-gray-500";
+  };
+
+  const getPlayer2Style = () => {
+    if (!fixture.completed || !fixture.result) return "text-gray-900";
+    if (fixture.result === "player2") return "text-green-600 font-bold";
+    if (fixture.result === "draw") return "text-blue-600";
+    return "text-gray-500";
+  };
+
+  const getBadgeStyle = () => {
+    if (fixture.player1 === "BYE" || fixture.player2 === "BYE") return "bg-yellow-100 border-yellow-300";
+    if (!fixture.completed || !fixture.result) return "bg-gray-200 border-gray-300";
+    if (fixture.result === "draw") return "bg-blue-100 border-blue-300";
+    return "bg-green-100 border-green-300";
+  };
+
+  const isBye = fixture.player1 === "BYE" || fixture.player2 === "BYE";
+
   return (
-    <div className="px-6 py-4 hover:bg-gray-50 transition-colors duration-150">
+    <div className={`px-6 py-4 transition-colors duration-150 ${isBye ? "bg-yellow-50 hover:bg-yellow-100" : "hover:bg-gray-50"}`}>
       {/* Mobile view */}
       <div className="md:hidden">
         <div className="text-center space-y-2">
-          <div className="font-semibold text-gray-900 text-sm">
+          <div className={`font-semibold text-sm ${getPlayer1Style()}`}>
             {fixture.player1}
           </div>
           <div className="flex items-center justify-center">
-            <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center border border-gray-300">
-              <span className="text-xs font-bold text-gray-600">VS</span>
+            <div className={`w-12 h-6 ${getBadgeStyle()} rounded flex items-center justify-center border`}>
+              <span className="text-xs font-bold text-gray-700">{getResultDisplay()}</span>
             </div>
           </div>
-          <div className="font-semibold text-gray-900 text-sm">
+          <div className={`font-semibold text-sm ${getPlayer2Style()}`}>
             {fixture.player2}
           </div>
         </div>
@@ -51,16 +95,16 @@ function FixtureRow({ fixture }: FixtureRowProps) {
       {/* Desktop view */}
       <div className="hidden md:flex items-center justify-center">
         <div className="flex items-center space-x-4">
-          <div className="text-right">
-            <div className="font-semibold text-gray-900">{fixture.player1}</div>
+          <div className="text-right min-w-[200px]">
+            <div className={`font-semibold ${getPlayer1Style()}`}>{fixture.player1}</div>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center border border-gray-300">
-              <span className="text-xs font-bold text-gray-600">VS</span>
+            <div className={`w-16 h-8 ${getBadgeStyle()} rounded flex items-center justify-center border`}>
+              <span className="text-xs font-bold text-gray-700">{getResultDisplay()}</span>
             </div>
           </div>
-          <div className="text-left">
-            <div className="font-semibold text-gray-900">{fixture.player2}</div>
+          <div className="text-left min-w-[200px]">
+            <div className={`font-semibold ${getPlayer2Style()}`}>{fixture.player2}</div>
           </div>
         </div>
       </div>
@@ -99,6 +143,28 @@ export default function SectionFixtures({
   className = "",
 }: SectionFixturesProps) {
   const weeks = [
+    {
+      week: 5,
+      title: "Week 5 Fixtures",
+      description: "All matches for the fifth week of the tournament",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week5.groupA },
+        { name: "Group B", fixtures: fixtures.week5.groupB },
+        { name: "Group C", fixtures: fixtures.week5.groupC },
+        { name: "Group D", fixtures: fixtures.week5.groupD },
+      ],
+    },
+    {
+      week: 4,
+      title: "Week 4 Fixtures",
+      description: "All matches for the fourth week of the tournament",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week4.groupA },
+        { name: "Group B", fixtures: fixtures.week4.groupB },
+        { name: "Group C", fixtures: fixtures.week4.groupC },
+        { name: "Group D", fixtures: fixtures.week4.groupD },
+      ],
+    },
     {
       week: 3,
       title: "Week 3 Fixtures",
