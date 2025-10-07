@@ -14,19 +14,16 @@ export default function SectionLeague({
     <section className={`w-full flex justify-center ${className}`}>
       <Card>
         <div className="text-center">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">
-            League Structure
-          </h2>
-          <p className="text-gray-700 whitespace-pre-line leading-relaxed text-lg mb-6">
+          <p className="text-neutral-50 whitespace-pre-line leading-relaxed text-base md:text-lg mb-6 md:mb-8">
             {leagueInfo}
           </p>
-          <div className="mt-8">
+          <div className="mt-8 md:mt-10">
             <Image
               src="/chess-board.jpg"
               alt="Chess Board"
               width={1000}
               height={1000}
-              className="rounded-lg mx-auto w-full max-w-md"
+              className="rounded-xl mx-auto w-full max-w-md opacity-90"
               priority
             />
           </div>

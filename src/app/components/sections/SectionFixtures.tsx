@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface Fixture {
   player1: string;
   player2: string;
@@ -51,42 +53,62 @@ function FixtureRow({ fixture }: FixtureRowProps) {
   };
 
   const getPlayer1Style = () => {
-    if (!fixture.completed || !fixture.result) return "text-gray-900";
-    if (fixture.result === "player1") return "text-green-600 font-bold";
-    if (fixture.result === "draw") return "text-blue-600";
-    return "text-gray-500";
+    if (!fixture.completed || !fixture.result) return "text-neutral-50";
+    if (fixture.result === "player1") return "text-neutral-50 font-extrabold";
+    if (fixture.result === "draw") return "text-neutral-50";
+    return "text-neutral-50/50";
   };
 
   const getPlayer2Style = () => {
-    if (!fixture.completed || !fixture.result) return "text-gray-900";
-    if (fixture.result === "player2") return "text-green-600 font-bold";
-    if (fixture.result === "draw") return "text-blue-600";
-    return "text-gray-500";
+    if (!fixture.completed || !fixture.result) return "text-neutral-50";
+    if (fixture.result === "player2") return "text-neutral-50 font-extrabold";
+    if (fixture.result === "draw") return "text-neutral-50";
+    return "text-neutral-50/50";
   };
 
   const getBadgeStyle = () => {
-    if (fixture.player1 === "BYE" || fixture.player2 === "BYE") return "bg-yellow-100 border-yellow-300";
-    if (!fixture.completed || !fixture.result) return "bg-gray-200 border-gray-300";
-    if (fixture.result === "draw") return "bg-blue-100 border-blue-300";
-    return "bg-green-100 border-green-300";
+    if (fixture.player1 === "BYE" || fixture.player2 === "BYE")
+      return "bg-neutral-50/10 border-neutral-900";
+    if (!fixture.completed || !fixture.result)
+      return "bg-neutral-950 border-neutral-900";
+    if (fixture.result === "draw") return "bg-neutral-950 border-neutral-900";
+    return "bg-neutral-50 border-neutral-50";
   };
 
   const isBye = fixture.player1 === "BYE" || fixture.player2 === "BYE";
 
   return (
-    <div className={`px-6 py-4 transition-colors duration-150 ${isBye ? "bg-yellow-50 hover:bg-yellow-100" : "hover:bg-gray-50"}`}>
+    <div
+      className={`px-6 py-5 transition-all duration-200 ${
+        isBye
+          ? "bg-neutral-50/5 hover:bg-neutral-50/10"
+          : "hover:bg-neutral-50/5"
+      }`}
+    >
       {/* Mobile view */}
       <div className="md:hidden">
-        <div className="text-center space-y-2">
-          <div className={`font-semibold text-sm ${getPlayer1Style()}`}>
+        <div className="flex items-center justify-between gap-2">
+          <div className={`font-bold text-sm flex-1 text-right ${getPlayer1Style()}`}>
             {fixture.player1}
           </div>
           <div className="flex items-center justify-center">
-            <div className={`w-12 h-6 ${getBadgeStyle()} rounded flex items-center justify-center border`}>
-              <span className="text-xs font-bold text-gray-700">{getResultDisplay()}</span>
+            <div
+              className={`w-14 h-7 ${getBadgeStyle()} rounded-full flex items-center justify-center border`}
+            >
+              <span
+                className={`text-xs font-bold ${
+                  fixture.completed &&
+                  fixture.result &&
+                  fixture.result !== "draw"
+                    ? "text-neutral-950"
+                    : "text-neutral-50"
+                }`}
+              >
+                {getResultDisplay()}
+              </span>
             </div>
           </div>
-          <div className={`font-semibold text-sm ${getPlayer2Style()}`}>
+          <div className={`font-bold text-sm flex-1 text-left ${getPlayer2Style()}`}>
             {fixture.player2}
           </div>
         </div>
@@ -94,17 +116,33 @@ function FixtureRow({ fixture }: FixtureRowProps) {
 
       {/* Desktop view */}
       <div className="hidden md:flex items-center justify-center">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           <div className="text-right min-w-[200px]">
-            <div className={`font-semibold ${getPlayer1Style()}`}>{fixture.player1}</div>
+            <div className={`font-bold ${getPlayer1Style()}`}>
+              {fixture.player1}
+            </div>
           </div>
           <div className="flex items-center space-x-2">
-            <div className={`w-16 h-8 ${getBadgeStyle()} rounded flex items-center justify-center border`}>
-              <span className="text-xs font-bold text-gray-700">{getResultDisplay()}</span>
+            <div
+              className={`w-20 h-9 ${getBadgeStyle()} rounded-full flex items-center justify-center border shadow-sm`}
+            >
+              <span
+                className={`text-xs font-bold ${
+                  fixture.completed &&
+                  fixture.result &&
+                  fixture.result !== "draw"
+                    ? "text-neutral-950"
+                    : "text-neutral-50"
+                }`}
+              >
+                {getResultDisplay()}
+              </span>
             </div>
           </div>
           <div className="text-left min-w-[200px]">
-            <div className={`font-semibold ${getPlayer2Style()}`}>{fixture.player2}</div>
+            <div className={`font-bold ${getPlayer2Style()}`}>
+              {fixture.player2}
+            </div>
           </div>
         </div>
       </div>
@@ -119,12 +157,12 @@ interface FixtureGroupProps {
 
 function FixtureGroup({ groupName, fixtures }: FixtureGroupProps) {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-300">
-      <div className="bg-gray-900 text-white px-6 py-4">
-        <h3 className="text-lg font-semibold">{groupName}</h3>
+    <div className="bg-neutral-950 rounded-2xl shadow-xl overflow-hidden border border-neutral-900">
+      <div className="bg-neutral-50 text-neutral-950 px-8 py-5">
+        <h3 className="text-lg font-bold tracking-wide">{groupName}</h3>
       </div>
 
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-neutral-900">
         {fixtures.map((fixture, index) => (
           <FixtureRow key={index} fixture={fixture} />
         ))}
@@ -142,11 +180,12 @@ export default function SectionFixtures({
   fixtures,
   className = "",
 }: SectionFixturesProps) {
+  const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
+
   const weeks = [
     {
       week: 5,
-      title: "Week 5 Fixtures",
-      description: "All matches for the fifth week of the tournament",
+      title: "Week 5",
       groups: [
         { name: "Group A", fixtures: fixtures.week5.groupA },
         { name: "Group B", fixtures: fixtures.week5.groupB },
@@ -156,8 +195,7 @@ export default function SectionFixtures({
     },
     {
       week: 4,
-      title: "Week 4 Fixtures",
-      description: "All matches for the fourth week of the tournament",
+      title: "Week 4",
       groups: [
         { name: "Group A", fixtures: fixtures.week4.groupA },
         { name: "Group B", fixtures: fixtures.week4.groupB },
@@ -167,8 +205,7 @@ export default function SectionFixtures({
     },
     {
       week: 3,
-      title: "Week 3 Fixtures",
-      description: "All matches for the third week of the tournament",
+      title: "Week 3",
       groups: [
         { name: "Group A", fixtures: fixtures.week3.groupA },
         { name: "Group B", fixtures: fixtures.week3.groupB },
@@ -178,8 +215,7 @@ export default function SectionFixtures({
     },
     {
       week: 2,
-      title: "Week 2 Fixtures",
-      description: "All matches for the second week of the tournament",
+      title: "Week 2",
       groups: [
         { name: "Group A", fixtures: fixtures.week2.groupA },
         { name: "Group B", fixtures: fixtures.week2.groupB },
@@ -189,8 +225,7 @@ export default function SectionFixtures({
     },
     {
       week: 1,
-      title: "Week 1 Fixtures",
-      description: "All matches for the first week of the tournament",
+      title: "Week 1",
       groups: [
         { name: "Group A", fixtures: fixtures.week1.groupA },
         { name: "Group B", fixtures: fixtures.week1.groupB },
@@ -200,29 +235,76 @@ export default function SectionFixtures({
     },
   ];
 
+  const currentWeek = weeks[currentWeekIndex];
+
+  const handlePrevWeek = () => {
+    setCurrentWeekIndex((prev) => (prev < weeks.length - 1 ? prev + 1 : 0));
+  };
+
+  const handleNextWeek = () => {
+    setCurrentWeekIndex((prev) => (prev > 0 ? prev - 1 : weeks.length - 1));
+  };
+
   return (
     <section className={`max-w-6xl w-full text-center ${className}`}>
-      <div className="space-y-12">
-        {weeks.map((week) => (
-          <div key={week.week} className="space-y-6">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-2">
-                {week.title}
-              </h2>
-              <p className="text-white">{week.description}</p>
-            </div>
+      <div className="space-y-8">
+        {/* Navigation Header */}
+        <div className="flex items-center justify-center gap-6 mb-8">
+          <button
+            onClick={handlePrevWeek}
+            className="p-3 rounded-full bg-neutral-950 border border-neutral-900 text-neutral-50 hover:bg-neutral-50 hover:text-neutral-950 transition-all duration-200"
+            aria-label="Previous week"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {week.groups.map((group) => (
-                <FixtureGroup
-                  key={`${week.week}-${group.name}`}
-                  groupName={group.name}
-                  fixtures={group.fixtures}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
+          <h2 className="text-3xl font-bold text-neutral-50 min-w-[150px]">
+            {currentWeek.title}
+          </h2>
+
+          <button
+            onClick={handleNextWeek}
+            className="p-3 rounded-full bg-neutral-950 border border-neutral-900 text-neutral-50 hover:bg-neutral-50 hover:text-neutral-950 transition-all duration-200"
+            aria-label="Next week"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        {/* Fixtures Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {currentWeek.groups.map((group) => (
+            <FixtureGroup
+              key={`${currentWeek.week}-${group.name}`}
+              groupName={group.name}
+              fixtures={group.fixtures}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

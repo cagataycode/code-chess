@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header
-      className="w-full py-8 flex flex-col items-center shadow-sm relative overflow-hidden"
+      className="w-full py-12 md:py-16 flex flex-col items-center shadow-lg relative overflow-hidden border-b border-neutral-900"
       style={{
         backgroundImage: 'url("/chess-tiles.svg")',
         backgroundSize: "480px 480px",
@@ -11,24 +11,21 @@ export default function Header() {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="absolute inset-0 bg-white"></div>
+      <div className="absolute inset-0 bg-neutral-950/95"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center">
-        <h1 className="text-2xl md:text-4xl font-bold flex items-center gap-2">
+        <h1 className="text-3xl md:text-5xl font-bold flex items-center gap-3">
           <Image
             src="/codelogo.svg"
             alt="CODE logo"
-            width={60}
-            height={60}
-            className="md:w-[100px] md:h-[100px] inline-block align-middle"
+            width={65}
+            height={65}
+            className="md:w-[140px] md:h-[140px] inline-block align-middle"
             priority
           />
-          <span className="text-black">Chess Club</span>
+          <span className="text-neutral-50">Chess Club</span>
         </h1>
-        <p className=" mb-10 text-sm md:text-lg text-black">
-          Where brains meet battles and pawns become legends!
-        </p>
       </div>
     </header>
   );
