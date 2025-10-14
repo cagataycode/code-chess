@@ -38,6 +38,7 @@ export const getFixtures = () => {
   const week3Matches = matches.filter((m) => m.week === 3);
   const week4Matches = matches.filter((m) => m.week === 4);
   const week5Matches = matches.filter((m) => m.week === 5);
+  const week6Matches = matches.filter((m) => m.week === 6);
 
   const groupMatches = (matches: Match[]) => ({
     groupA: matches
@@ -46,7 +47,7 @@ export const getFixtures = () => {
         player1: m.player1,
         player2: m.player2,
         result: m.result,
-        completed: m.completed
+        completed: m.completed,
       })),
     groupB: matches
       .filter((m) => m.group === "B")
@@ -54,7 +55,7 @@ export const getFixtures = () => {
         player1: m.player1,
         player2: m.player2,
         result: m.result,
-        completed: m.completed
+        completed: m.completed,
       })),
     groupC: matches
       .filter((m) => m.group === "C")
@@ -62,7 +63,7 @@ export const getFixtures = () => {
         player1: m.player1,
         player2: m.player2,
         result: m.result,
-        completed: m.completed
+        completed: m.completed,
       })),
     groupD: matches
       .filter((m) => m.group === "D")
@@ -70,7 +71,7 @@ export const getFixtures = () => {
         player1: m.player1,
         player2: m.player2,
         result: m.result,
-        completed: m.completed
+        completed: m.completed,
       })),
   });
 
@@ -80,6 +81,7 @@ export const getFixtures = () => {
     week3: groupMatches(week3Matches),
     week4: groupMatches(week4Matches),
     week5: groupMatches(week5Matches),
+    week6: groupMatches(week6Matches),
   };
 };
 

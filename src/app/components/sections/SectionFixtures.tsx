@@ -38,6 +38,12 @@ interface FixturesData {
     groupC: Fixture[];
     groupD: Fixture[];
   };
+  week6: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
 }
 
 interface FixtureRowProps {
@@ -88,7 +94,9 @@ function FixtureRow({ fixture }: FixtureRowProps) {
       {/* Mobile view */}
       <div className="md:hidden">
         <div className="flex items-center justify-between gap-2">
-          <div className={`font-bold text-sm flex-1 text-right ${getPlayer1Style()}`}>
+          <div
+            className={`font-bold text-sm flex-1 text-right ${getPlayer1Style()}`}
+          >
             {fixture.player1}
           </div>
           <div className="flex items-center justify-center">
@@ -108,7 +116,9 @@ function FixtureRow({ fixture }: FixtureRowProps) {
               </span>
             </div>
           </div>
-          <div className={`font-bold text-sm flex-1 text-left ${getPlayer2Style()}`}>
+          <div
+            className={`font-bold text-sm flex-1 text-left ${getPlayer2Style()}`}
+          >
             {fixture.player2}
           </div>
         </div>
@@ -183,6 +193,16 @@ export default function SectionFixtures({
   const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
 
   const weeks = [
+    {
+      week: 6,
+      title: "Week 6",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week6.groupA },
+        { name: "Group B", fixtures: fixtures.week6.groupB },
+        { name: "Group C", fixtures: fixtures.week6.groupC },
+        { name: "Group D", fixtures: fixtures.week6.groupD },
+      ],
+    },
     {
       week: 5,
       title: "Week 5",
