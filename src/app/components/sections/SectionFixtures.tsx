@@ -44,6 +44,12 @@ interface FixturesData {
     groupC: Fixture[];
     groupD: Fixture[];
   };
+  week7: {
+    groupA: Fixture[];
+    groupB: Fixture[];
+    groupC: Fixture[];
+    groupD: Fixture[];
+  };
 }
 
 interface FixtureRowProps {
@@ -193,6 +199,16 @@ export default function SectionFixtures({
   const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
 
   const weeks = [
+    {
+      week: 7,
+      title: "Week 7",
+      groups: [
+        { name: "Group A", fixtures: fixtures.week7.groupA },
+        { name: "Group B", fixtures: fixtures.week7.groupB },
+        { name: "Group C", fixtures: fixtures.week7.groupC },
+        { name: "Group D", fixtures: fixtures.week7.groupD },
+      ],
+    },
     {
       week: 6,
       title: "Week 6",

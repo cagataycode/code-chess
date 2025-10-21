@@ -39,6 +39,7 @@ export const getFixtures = () => {
   const week4Matches = matches.filter((m) => m.week === 4);
   const week5Matches = matches.filter((m) => m.week === 5);
   const week6Matches = matches.filter((m) => m.week === 6);
+  const week7Matches = matches.filter((m) => m.week === 7);
 
   const groupMatches = (matches: Match[]) => ({
     groupA: matches
@@ -82,6 +83,7 @@ export const getFixtures = () => {
     week4: groupMatches(week4Matches),
     week5: groupMatches(week5Matches),
     week6: groupMatches(week6Matches),
+    week7: groupMatches(week7Matches),
   };
 };
 
