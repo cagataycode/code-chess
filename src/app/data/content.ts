@@ -91,13 +91,5 @@ export const getLeaderboard = () => {
   return chessDataManager.getLeaderboard();
 };
 
-export const getPlayers = () => {
-  return chessDataManager.getPlayers();
-};
-
-export const getMatches = () => {
-  return chessDataManager.getMatches();
-};
-
 // Export the data manager for components that need more functionality
 export { chessDataManager };

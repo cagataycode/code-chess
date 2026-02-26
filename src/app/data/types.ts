@@ -23,8 +23,3 @@ export interface ChessData {
   matches: Match[];
   lastUpdated: string;
 }
-
-export interface GroupStandings {
-  group: "A" | "B" | "C" | "D";
-  players: Player[];
-}

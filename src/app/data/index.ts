@@ -4,7 +4,5 @@ export {
   LEAGUE_INFO,
   getFixtures,
   getLeaderboard,
-  getPlayers,
-  getMatches,
   chessDataManager,
 } from "./content";

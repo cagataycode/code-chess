@@ -1,4 +1,4 @@
-import { ChessData, Player, Match, GroupStandings } from "./types";
+import { ChessData, Player, Match } from "./types";
 import { initialChessData } from "./chessData";
 
 const STORAGE_KEY = "chess-club-data";
@@ -74,41 +74,12 @@ export class ChessDataManager {
     return [...this.data.matches];
   }
 
-  public getMatchesByWeek(week: number): Match[] {
-    return this.data.matches.filter((match) => match.week === week);
-  }
-
-  public getMatchesByGroup(group: "A" | "B" | "C" | "D"): Match[] {
-    return this.data.matches.filter((match) => match.group === group);
-  }
-
   public getLeaderboard(): Player[] {
     return [...this.data.players].sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       if (b.wins !== a.wins) return b.wins - a.wins;
       return a.name.localeCompare(b.name);
     });
-  }
-
-  public getGroupStandings(): GroupStandings[] {
-    const groups: GroupStandings[] = [
-      { group: "A", players: [] },
-      { group: "B", players: [] },
-      { group: "C", players: [] },
-      { group: "D", players: [] },
-    ];
-
-    groups.forEach((group) => {
-      group.players = this.data.players
-        .filter((player) => player.group === group.group)
-        .sort((a, b) => {
-          if (b.score !== a.score) return b.score - a.score;
-          if (b.wins !== a.wins) return b.wins - a.wins;
-          return a.name.localeCompare(b.name);
-        });
-    });
-
-    return groups;
   }
 
   public updateMatchResult(
